@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shunx — 非盈利研究团队</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #0d0d0d;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --accent: #1a73e8;
+            --accent-hover: #1557b0;
+            --border: #e0e0e0;
+            --border-light: #f0f0f0;
+            --max-width: 1024px;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            --font-mono: 'SF Mono', 'Cascadia Code', 'Consolas', 'Menlo', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+            letter-spacing: -0.01em;
+        }
+
+        /* ── Navigation ────────────────────────── */
+        .nav {
+            border-bottom: 1px solid var(--border);
+            height: 56px;
+            background: #fff;
+        }
+
+        .nav-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-logo .logo-mark {
+            width: 20px;
+            height: 20px;
+            background: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            border-radius: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: color 0.1s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+            background: none;
+        }
+
+        .nav-links a.nav-cta {
+            background: var(--accent);
+            color: #fff;
+            font-weight: 500;
+            padding: 7px 16px;
+            border-radius: 4px;
+            margin-left: 8px;
+            font-size: 0.85rem;
+        }
+        .nav-links a.nav-cta:hover {
+            background: var(--accent-hover);
+            color: #fff;
+        }
+
+        /* ── Hero ──────────────────────────────── */
+        .hero {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 72px 24px 48px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: -0.04em;
+            line-height: 1.2;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 520px;
+            margin: 0 auto 28px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            text-decoration: none;
+            cursor: pointer;
+            border: 1px solid transparent;
+            font-family: inherit;
+            background: transparent;
+            transition: none;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+        .btn-outline:hover {
+            color: var(--text);
+            border-color: #aaa;
+        }
+
+        /* ── Stats Row ─────────────────────────── */
+        .stats-row {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px 8px;
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            line-height: 1.2;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+            font-weight: 400;
+        }
+
+        /* ── Divider ───────────────────────────── */
+        .divider {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .divider hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 36px 0;
+        }
+
+        /* ── Section ───────────────────────────── */
+        .section {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+        .section-header {
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .section-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            max-width: 480px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* ── Project Grid ──────────────────────── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 0;
+            border-left: 1px solid var(--border);
+            border-top: 1px solid var(--border);
+        }
+        .project-card {
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 24px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #fff;
+            transition: none;
+        }
+        .project-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--text);
+            margin: 0;
+        }
+        .project-card p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .project-card .card-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0;
+            margin-top: 8px;
+        }
+        .project-card .card-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            align-self: flex-start;
+        }
+
+        /* ── Members ───────────────────────────── */
+        .members-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            justify-content: center;
+        }
+        .member-card {
+            text-align: center;
+            width: 120px;
+            flex-shrink: 0;
+        }
+        .member-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 6px;
+            background: #f2f2f2;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #666;
+            user-select: none;
+            transition: none;
+        }
+        .member-card .member-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: -0.01em;
+            color: var(--text);
+        }
+        .member-card .member-role {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* ── CTA ───────────────────────────────── */
+        .cta-section {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 48px 24px;
+            text-align: center;
+            background: #fafafa;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .cta-section h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .cta-section p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* ── Footer ────────────────────────────── */
+        .footer {
+            background: #fff;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            letter-spacing: -0.01em;
+        }
+        .footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: var(--text);
+        }
+        .footer-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 18px;
+        }
+
+        /* ── Responsive ────────────────────────── */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+                border-left: 1px solid var(--border);
+                border-top: 1px solid var(--border);
+            }
+            .project-card {
+                border-right: 1px solid var(--border);
+                border-bottom: 1px solid var(--border);
+            }
+            .members-row {
+                gap: 24px;
+            }
+            .member-card {
+                width: 100px;
+            }
+            .nav-links a {
+                padding: 5px 8px;
+                font-size: 0.8rem;
+            }
+            .nav-inner {
+                padding: 0 16px;
+            }
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .section {
+                padding: 36px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                Shunx
+            </a>
+            <ul class="nav-links">
+                <li><a href="#projects">项目</a></li>
+                <li><a href="#members">成员</a></li>
+                <li><a href="#about">关于</a></li>
+                <li><a href="https://github.com/shunianssy" target="_blank" rel="noopener">GitHub</a></li>
+                <li><a href="#join" class="nav-cta">加入我们</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>用代码构建未来幻想</h1>
+        <p class="hero-desc">
+            Shunx 是一个由兴趣小组组成的开源研究团队，专注于构建高质量的开源基础设施与工具。我们相信技术的力量能够连接人与人，推动创新，并创造更美好的数字世界。
+        </p>
+        <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">项目</a>
+            <a href="https://github.com/shunianssy" target="_blank" rel="noopener" class="btn btn-outline">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12 24 5.37 18.63 0 12 0z"/></svg>
+                GitHub
+            </a>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats-row">
+        <div class="stat-item">
+            <div class="stat-value">30+</div>
+            <div class="stat-label">开源项目</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">60+</div>
+            <div class="stat-label">GitHub Stars</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">6</div>
+            <div class="stat-label">核心成员</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">2 年</div>
+            <div class="stat-label">持续运营</div>
+        </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="divider"><hr></div>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="section-header">
+            <div class="section-title">核心项目</div>
+            <p class="section-desc">我们维护着一系列高可用、高性能的开源基础设施，服务于全球开发者。</p>
+        </div>
+        <div class="projects-grid">
+            <a href="https://github.com/shunianssy/foxker" class="project-card">
+                <h3>Foxker</h3>
+                <p>一个占用小的Dockerwindows工具，拒绝Docker原生桌面的超大占用</p>
+                <span class="card-tag">Docker</span>
+                <span class="card-meta">github.com/shunianssy/foxker</span>
+            </a>
+            <a href="https://github.com/shunianssy/foxHippoRAG" class="project-card">
+                <h3>FoxHippoRAG</h3>
+                <p>RAG高速索引库</p>
+                <span class="card-tag">AI</span>
+                <span class="card-meta">github.com/shunianssy/foxHippoRAG</span>
+            </a>
+            <a href="https://github.com/wuhulab/FoxCode" class="project-card">
+                <h3>FoxCode</h3>
+                <p>一个用于代码生成和编辑的AI工具</p>
+                <span class="card-tag">开发工具</span>
+                <span class="card-meta">github.com/wuhulab/FoxCode</span>
+            </a>
+            <a href="https://fai.shunx.top/" class="project-card">
+                <h3>Fai</h3>
+                <p>优秀，实惠，稳定的AI中转站</p>
+                <span class="card-tag">开发工具</span>
+                <span class="card-meta">https://fai.shunx.top/</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Members Section -->
+    <section class="section" id="members">
+        <div class="section-header">
+            <div class="section-title">核心成员</div>
+            <p class="section-desc">来自不同领域的贡献者，因对技术的热爱而汇聚。</p>
+        </div>
+        <div class="members-row">
+            <div class="member-card">
+                <div class="member-name">吾家小狐</div>
+                <div class="member-role">CEO | 创始人 | 全栈</div>
+            </div>
+            <div class="member-card">
+                <div class="member-name">Donvie</div>
+                <div class="member-role">前端</div>
+            </div>
+            <div class="member-card">
+                <div class="member-name">YearnNyaspe</div>
+                <div class="member-role">全栈 | 运维</div>
+            </div>
+            <div class="member-card">
+                <div class="member-name">盐酸聚六亚甲基胍</div>
+                <div class="member-role">美术 | 策划</div>
+            </div>
+            <div class="member-card">
+                <div class="member-name">瑞星</div>
+                <div class="member-role">运营</div>
+            </div>
+            <div class="member-card">
+                <div class="member-name">CH盐哥养的九尾猫</div>
+                <div class="member-role">美术</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="section-header">
+            <div class="section-title">关于我们</div>
+        </div>
+        <p style="color:var(--text-secondary);font-size:0.92rem;line-height:1.8;max-width:640px;margin:0 auto;text-align:center;font-weight:400;">
+            Shunx 成立于 2025 年，最初是一个技术兴趣小组，如今已成长为拥有多个活跃开源项目的分布式团队。我们相信开放的力量，致力于构建透明、可靠且优雅的技术基础设施，让每一位开发者都能获得更好的工具与体验。团队目前维护着超过 <strong>30 个</strong> 开源仓库，累计获得 <strong>60+</strong> 
+        </p>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-section" id="join">
+        <h2>加入 Shunx</h2>
+        <p>无论你是学生还是经验丰富的工程师，只要对技术充满热情，我们都欢迎你的到来。</p>
+        <a href="mailto:s@shunx.top" class="btn btn-primary">发送邮件联系</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <span>2025 &ndash; 2026 <strong>Shunx</strong></span>
+            <div class="footer-links">
+                <a href="https://github.com/shunianssy" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://i.shunx.top">博客</a>
+                <a href="mailto:s@shunx.top">联系</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
